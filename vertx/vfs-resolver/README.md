@@ -7,16 +7,22 @@
 Download a WildFly server and start it, like:
 
 > wget -O wildfly.zip https://github.com/wildfly/wildfly/releases/download/26.0.0.Final/wildfly-26.0.0.Final.zip
+
 > unzip -q wildfly.zip
+
 > wildfly-26.0.0.Final/bin/standalone.sh
 
 ### Build and deploy the reproducer
 
 In another terminal, run the followings:
 
+
 > git clone https://github.com/gaol/tests
+
 > cd tests/vfs-resolver
+
 > mvn clean package wildfly:deploy
+
 
 ### Access the http end point
 
