@@ -1,5 +1,8 @@
 # Reproducer for jboss-vfs resolver
 
+When an embeded Vertx is used for a war deployment which reads resources in the bundle, and it is deployed to 
+a WildFly server, it fails to read with error message: `Invalid url protocol: vfs`.
+
 ## How to reproduce
 
 ### Start a WildFly Server

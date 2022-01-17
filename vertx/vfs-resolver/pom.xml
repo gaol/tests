@@ -44,6 +44,10 @@
         <version.vertx>4.2.3</version.vertx>
     </properties>
 
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
     <repositories>
         <repository>
             <id>jboss-public-maven-repository</id>
@@ -143,7 +147,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-    </build>
 </project>

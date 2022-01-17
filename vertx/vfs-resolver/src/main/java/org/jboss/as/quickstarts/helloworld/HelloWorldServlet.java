@@ -30,7 +30,8 @@ import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 
 /**
- * Servlet used to use Vertx filesystem API to access files in the deployed archive.
+ * Servlet which uses Vertx filesystem API to access resources in the deployed archive.
+ * More valuable use case can be the PropertyFileAuthentication which needs to read properties file inside of the war deployment.
  *
  */
 @SuppressWarnings("serial")
