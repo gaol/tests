@@ -29,6 +29,12 @@ In another terminal, run the followings:
 > curl http://localhost:8080/helloworld/helloworld
 
 
+### Undeploy from server
+
+After tests, you can undeploy it using command:
+
+> mvn wildfly:undeploy
+
 ## Expected behavior
 
 Expected response is:

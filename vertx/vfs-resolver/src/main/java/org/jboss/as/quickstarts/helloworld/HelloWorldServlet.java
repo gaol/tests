@@ -46,7 +46,11 @@ public class HelloWorldServlet extends HttpServlet {
 
     @Override
     public void destroy() {
-        vertx.close();
+        try {
+            vertx.close().toCompletionStage().toCompletableFuture().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -41,6 +41,7 @@
     <properties>
         <!-- The versions for BOMs, Dependencies and Plugins -->
         <version.server.bom>26.0.0.Final</version.server.bom>
+        <version.vertx>4.2.3</version.vertx>
     </properties>
 
     <repositories>
@@ -138,7 +139,7 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
-            <version>4.2.4-SNAPSHOT</version>
+            <version>${version.vertx}</version>
         </dependency>
     </dependencies>
 
