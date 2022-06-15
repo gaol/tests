@@ -16,35 +16,12 @@
   <name>Olympus Example</name>
 
   <properties>
-    <version.netty>4.1.49.Final</version.netty>
     <maven.repository.protocol>https</maven.repository.protocol>
     <maven.repository.url>${maven.repository.protocol}://repository.jboss.org/nexus/content/groups/public/</maven.repository.url>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-bom</artifactId>
-        <version>${version.netty}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-codec-http</artifactId>
-    </dependency>
-
-    <!-- Needed on Java11 and later -->
-    <dependency>
-      <groupId>com.sun.activation</groupId>
-      <artifactId>javax.activation</artifactId>
-      <version>1.2.0</version>
-    </dependency>
 
     <!-- org.apache.taglibs:taglibs-standard-spec:pom:1.2.6-RC1 -->
     <dependency>
