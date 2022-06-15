@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>org.jboss</groupId>
+    <artifactId>jboss-parent</artifactId>
+    <version>35</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.gaol.tests</groupId>
+  <artifactId>olympus-example</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Olympus Example</name>
+
+  <properties>
+    <version.netty>4.1.49.Final</version.netty>
+    <maven.repository.protocol>https</maven.repository.protocol>
+    <maven.repository.url>${maven.repository.protocol}://repository.jboss.org/nexus/content/groups/public/</maven.repository.url>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-bom</artifactId>
+        <version>${version.netty}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-codec-http</artifactId>
+    </dependency>
+
+    <!-- Needed on Java11 and later -->
+    <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>javax.activation</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+
+    <!-- org.apache.taglibs:taglibs-standard-spec:pom:1.2.6-RC1 -->
+    <dependency>
+      <groupId>org.apache.taglibs</groupId>
+      <artifactId>taglibs-standard-spec</artifactId>
+      <version>1.2.6-RC1</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </snapshots>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>${maven.repository.url}</url>
+      <layout>default</layout>
+    </repository>
+    <!-- Remove below repo after opensaml 4.2.0 is accessible from maven central repo-->
+    <repository>
+      <id>opensaml-repo</id>
+      <name>opensaml</name>
+      <url>https://build.shibboleth.net/nexus/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>${maven.repository.url}</url>
+    </pluginRepository>
+  </pluginRepositories>
+</project>
+
