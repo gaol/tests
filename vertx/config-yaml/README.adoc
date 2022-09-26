@@ -1,0 +1,92 @@
+= Starter
+
+Reproducer for issue: https://github.com/vert-x3/vertx-config/issues/151
+
+== Reproduce
+
+* mvn clean package
+* java -jar target/config-yaml-issue-1.0.0-SNAPSHOT-fat.jar --instances 1
+** Now you see `All GOOD`
+* java -jar target/config-yaml-issue-1.0.0-SNAPSHOT-fat.jar --instances 2
+** Now you see exception:
+
+```
+Sep 26, 2022 10:29:37 PM io.vertx.core.impl.launcher.commands.VertxIsolatedDeployer
+INFO: Succeeded in deploying verticle
+expected '<document start>', but found '<scalar>'
+ in 'string', line 1, column 19:
+    configKey: configValue
+                      ^
+
+	at org.yaml.snakeyaml.parser.ParserImpl$ParseDocumentStart.produce(ParserImpl.java:259)
+	at org.yaml.snakeyaml.parser.ParserImpl.peekEvent(ParserImpl.java:166)
+	at org.yaml.snakeyaml.comments.CommentEventsCollector$1.peek(CommentEventsCollector.java:59)
+	at org.yaml.snakeyaml.comments.CommentEventsCollector$1.peek(CommentEventsCollector.java:45)
+	at org.yaml.snakeyaml.comments.CommentEventsCollector.collectEvents(CommentEventsCollector.java:140)
+	at org.yaml.snakeyaml.comments.CommentEventsCollector.collectEvents(CommentEventsCollector.java:119)
+	at org.yaml.snakeyaml.composer.Composer.getNode(Composer.java:117)
+	at org.yaml.snakeyaml.composer.Composer.getSingleNode(Composer.java:142)
+	at org.yaml.snakeyaml.constructor.BaseConstructor.getSingleData(BaseConstructor.java:151)
+	at org.yaml.snakeyaml.Yaml.loadFromReader(Yaml.java:491)
+	at org.yaml.snakeyaml.Yaml.load(Yaml.java:416)
+	at io.vertx.config.yaml.YamlProcessor.lambda$process$0(YamlProcessor.java:57)
+	at io.vertx.core.impl.ContextBase.lambda$null$0(ContextBase.java:137)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:264)
+	at io.vertx.core.impl.ContextBase.lambda$executeBlocking$1(ContextBase.java:135)
+	at io.vertx.core.impl.TaskQueue.run(TaskQueue.java:76)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+io.vertx.core.json.DecodeException: Failed to decode YAML
+	at io.vertx.config.yaml.YamlProcessor.lambda$process$0(YamlProcessor.java:60)
+	at io.vertx.core.impl.ContextBase.lambda$null$0(ContextBase.java:137)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:264)
+	at io.vertx.core.impl.ContextBase.lambda$executeBlocking$1(ContextBase.java:135)
+	at io.vertx.core.impl.TaskQueue.run(TaskQueue.java:76)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.ClassCastException: class org.yaml.snakeyaml.events.DocumentEndEvent cannot be cast to class org.yaml.snakeyaml.events.ScalarEvent (org.yaml.snakeyaml.events.DocumentEndEvent and org.yaml.snakeyaml.events.ScalarEvent are in unnamed module of loader 'app')
+	at org.yaml.snakeyaml.composer.Composer.composeScalarNode(Composer.java:196)
+	at org.yaml.snakeyaml.composer.Composer.composeNode(Composer.java:184)
+	at org.yaml.snakeyaml.composer.Composer.getNode(Composer.java:115)
+	at org.yaml.snakeyaml.composer.Composer.getSingleNode(Composer.java:142)
+	at org.yaml.snakeyaml.constructor.BaseConstructor.getSingleData(BaseConstructor.java:151)
+	at org.yaml.snakeyaml.Yaml.loadFromReader(Yaml.java:491)
+	at org.yaml.snakeyaml.Yaml.load(Yaml.java:416)
+	at io.vertx.config.yaml.YamlProcessor.lambda$process$0(YamlProcessor.java:57)
+	... 8 more
+
+```
+
+image:https://img.shields.io/badge/vert.x-4.2.7-purple.svg[link="https://vertx.io"]
+
+This application was generated using http://start.vertx.io
+
+== Building
+
+To launch your tests:
+```
+./mvnw clean test
+```
+
+To package your application:
+```
+./mvnw clean package
+```
+
+To run your application:
+```
+./mvnw clean compile exec:java
+```
+
+== Help
+
+* https://vertx.io/docs/[Vert.x Documentation]
+* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
+* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
+* https://gitter.im/eclipse-vertx/vertx-users[Vert.x Gitter]
+
+
